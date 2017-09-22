@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -41,6 +41,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUYE2PmNGodvZGXhZhY2lCTj58N8Q5kF0&libraries=places&callback=initAutocomplete" async defer></script>
+    {{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUYE2PmNGodvZGXhZhY2lCTj58N8Q5kF0&libraries=places"></script>--}}
 
     <script src="{{ asset('js/jquery.easy-autocomplete.min.js') }}"></script>
     <script src="{{ asset('js/functions.js') }}"></script>
