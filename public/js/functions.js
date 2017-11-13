@@ -8,31 +8,10 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 $(document).ready(function () {
 
     $('.result').hide();
-
-    // var options = {
-    //     url: 'rs/city.list.json',
-    //     getValue: 'name',
-    //     list: {
-    //         match: {
-    //             enabled: true
-    //         }
-    //     }
-    // };
-    //
-    // $('#search').easyAutocomplete(options);
 });
 
 
-
-
-// This example displays an address form, using the autocomplete feature
-// of the Google Places API to help users fill in the information.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-var placeSearch, autocomplete;
+var autocomplete;
 var componentForm = {
     street_number: 'short_name',
     route: 'long_name',
@@ -46,7 +25,7 @@ function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
     autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+        /** @type {!HTMLInputElement} */(document.getElementById('weather')),
         {types: ['geocode']});
 
     // When the user selects an address from the dropdown, populate the address
@@ -93,18 +72,16 @@ function geolocate() {
 }
 
 
-
-
 $('#weather-search-form').submit(function (e) {
 
     e.preventDefault();
     var apiUrl = 'http://api.openweathermap.org/data/2.5/weather';
     var apiId = '2052c5e95a66cca875c0162b197d0614';
-    var weatherValue = $('#weather').val();
+    // var weatherValue = $('#weather').val();
+    var weatherValue = $('#locality').val();
     var weatherValueString = weatherValue.split(' ').join('+');
 
     $.ajax({
-        // url: apiUrl+'?q='+weatherValue+',es&appid='+apiId+'&units=metric',
         url: apiUrl+'?q='+weatherValueString+'&appid='+apiId+'&units=metric',
         type: 'POST',
         data: {_token: CSRF_TOKEN},
@@ -114,7 +91,7 @@ $('#weather-search-form').submit(function (e) {
 
             var icon = '';
             $.each(data.weather, function (a, b) {
-               icon = b.icon;
+                icon = b.icon;
             });
             var iconWeather = 'http://openweathermap.org/img/w/'+icon+'.png';
             console.log(iconWeather);
